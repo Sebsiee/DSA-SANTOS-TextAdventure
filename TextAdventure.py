@@ -7,13 +7,13 @@ def typingPrint(text):
   for character in text:
     sys.stdout.write(character)
     sys.stdout.flush()
-    time.sleep(0.0)
+    time.sleep(0.02)
 
 def typingInput(text):
   for character in text:
     sys.stdout.write(character)
     sys.stdout.flush()
-    time.sleep(0.0)
+    time.sleep(0.02)
   value = input()  
   return value 
 
@@ -28,7 +28,7 @@ def welcome():
 ..••°°°°••....••°°°°••...••°°°°••....••°°°°••....••°°°°••....••°°°°••....••°°°°••....••°°°°••....••°°°°••..
     """)
     while True:
-        startGame = input("Are your ready to start your game? Type Y if yes or N if no: ")
+        startGame = input("Are your ready to start your game? Type Y if Yes or N if No: ")
         if startGame.upper() == "Y":
             intro()
             break
@@ -272,13 +272,13 @@ def topTower():
             typingPrint("""
         
         You attacked him once but he's still standing
-        He stricked back.
+        He striked back.
     """)
 
             if "Iron Armor" in backpack.values():
-                finalAttack = typingInput("""
+                typingPrint("""
 
-        His sword didn't do anything
+        His sword didn't do anything to your Iron Armor.
         What will you do you now?
 
 
@@ -286,26 +286,122 @@ def topTower():
 
     """)
                 while True:
-                    if finalAttack.upper == ("FIGHT"):
-                        ("You defeated him!")
-                    break
+                    finalLAttack = input("You: ")
+                    if finalLAttack.upper() == "FIGHT":
+                        typingPrint("""
+
+        You attacked him again
+        HE'S DEFEATED!
+
+            \033[1;32mYOU WON!
+            Hero Ending \033[0;0m
+
+    """)
+                        break
+
+                    elif finalLAttack.upper() == "FLEE":
+                        typingPrint("""
+
+        Elrond: You can't escape me!
+        He caught you.
+
+            \033[0;31mYou Lost.
+                   Try again! \033[0;0m
+
+    """)
+                        continue
+
+                    else:
+                        print("Input not recognized.")
+                        continue
+            
 
             elif "Leather Armor" in backpack.values():
-                typingPrint("      His flaming sword burned your armor")
+                typingInput("""
 
+        His sword burned your armor.
+        You can now move faster.
+        What will you do you now?
+
+
+                 \033[1mFIGHT        FLEE\033[0;0m
+
+    """)
+                while True:
+                    finalLAttack = input("You: ")
+                    if finalLAttack.upper() == "FIGHT":
+                        typingPrint("""
+
+        You attacked him again
+        HE'S DEFEATED!
+
+            \033[1;32mYOU WON!
+            Hero Ending \033[0;0m
+
+    """)
+                        break
+
+                    elif finalLAttack.upper() == "FLEE":
+                        typingPrint("""
+
+        You ran like the wind.
+        You escaped the tower but the town sees you as a coward now.
+
+            \033[1;33mYou Lost.
+            Coward Ending \033[0;0m
+
+    """)
+                        break
+
+                    else:
+                        print("Input not recognized.")
+                        continue
+    
+                            
             else:
-                typingPrint("You have no Armor.")
+                typingPrint("""
+
+        You have no armor.
+        His attack wounded you badly.
+
+            \033[0;33mYOU LOST!
+            Dead ending \033[0;0m
+
+    """)
+
 
             break
 
+        elif playerChoice.upper() == "BARGAIN":
+            typingPrint("""
+        
+        You persuaded him to be a good person.
+        You became friends and he became a good lord.
+
+            \033[0;33mYOU WON!
+                   Friendship/Secret ending. \033[0;0m
+
+    """)
+            break
+
+        elif playerChoice.upper() == "FLEE":
+            typingPrint("""
+
+        Elrond: You can't escape me!
+        He caught you.
+
+            \033[0;31mYou Lost.
+                   Try again! \033[0;0m
+
+    """)
+            continue
+
+        else:
+            print("Input not recognized.")
+            continue
+
 
 welcome()
-
-
-    
-#Swordsman Option
-#Mage Option
-#Archer Option
 
 
 
